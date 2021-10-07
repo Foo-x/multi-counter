@@ -16,7 +16,12 @@ type Props = {
   title?: string
 }
 
-const Seo: React.FC<Props> = ({ description, lang, meta = [], title }) => {
+const Seo: React.FC<Props> = ({
+  description,
+  lang = "ja",
+  meta = [],
+  title,
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
