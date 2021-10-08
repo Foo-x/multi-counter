@@ -1,6 +1,7 @@
 .counterWithLabel {
   display: flex;
   flex-direction: column;
+  position: relative;
   padding: var(--spacing-6);
   gap: var(--spacing-6);
   border-radius: 0.25rem;
@@ -18,4 +19,39 @@
 .counterRow {
   display: flex;
   justify-content: flex-end;
+}
+
+.closeButton {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  background-color: var(--pccs-b18);
+  border-color: transparent;
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.closeButton::before {
+  width: 50%;
+  height: 2px;
+}
+
+.closeButton::after {
+  width: 2px;
+  height: 50%;
+}
+
+.closeButton::before,
+.closeButton::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  background-color: #fff;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
 }

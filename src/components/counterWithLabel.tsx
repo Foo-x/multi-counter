@@ -14,6 +14,7 @@ const CounterWithLabel: React.FC<Props> = ({ initLabel, initValue = 0 }) => {
       <div className={styles.counterRow}>
         <Counter initValue={initValue} />
       </div>
+      <button className={styles.closeButton}></button>
     </div>
   )
 }
