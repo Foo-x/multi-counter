@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `マルチカウンター`,
     description: `複数のカウンターです。`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://foo-x.github.io/multi-counter/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
