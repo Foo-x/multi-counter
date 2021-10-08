@@ -2,27 +2,31 @@ import React from "react"
 import * as styles from "~/styles/components/counterWithLabel.module.css"
 import Counter from "./counter"
 
-type Props = {
-  initLabel: string
-  initValue?: number
-  dispatch: () => void
+export type CounterProps = {
+  label: string
+  value: number
 }
 
-const CounterWithLabel: React.FC<Props> = ({
-  initLabel,
-  initValue = 0,
-  dispatch,
-}) => {
+type Props = {
+  prop: CounterProps
+  update: (prop: CounterProps) => void
+  remove: () => void
+}
+
+const CounterWithLabel: React.FC<Props> = ({ prop, update, remove }) => {
   return (
     <div className={styles.counterWithLabel}>
-      <input className={styles.label} defaultValue={initLabel} />
+      <input
+        className={styles.label}
+        defaultValue={prop.label}
+        onInput={e => {
+          update({ ...prop, label: e.currentTarget.value })
+        }}
+      />
       <div className={styles.counterRow}>
-        <Counter initValue={initValue} />
+        <Counter initValue={prop.value} />
       </div>
-      <button
-        className={styles.closeButton}
-        onClick={() => dispatch()}
-      ></button>
+      <button className={styles.closeButton} onClick={() => remove()}></button>
     </div>
   )
 }
