@@ -3,6 +3,7 @@ import * as styles from "~/styles/components/counterWithLabel.module.css"
 import Counter from "./counter"
 
 export type CounterProps = {
+  id: number
   label: string
   value: number
 }

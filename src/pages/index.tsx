@@ -1,6 +1,6 @@
 import type { PageProps } from "gatsby"
-import React, { useReducer } from "react"
-import CounterWithLabel from "~/components/counterWithLabel"
+import React, { useReducer, useState } from "react"
+import CounterWithLabel, { CounterProps } from "~/components/counterWithLabel"
 import * as styles from "~/styles/pages/index.module.css"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -40,6 +40,7 @@ const reducer = (state: CounterProps[], action: Action): CounterProps[] => {
 }
 
 const IndexPage: React.FC<PageProps> = () => {
+  const [nextId, setNextId] = useState(0)
   const [counterList, dispatch] = useReducer(reducer, [])
 
   return (
@@ -53,14 +54,18 @@ const IndexPage: React.FC<PageProps> = () => {
               dispatch({ type: "update", index: i, prop: newProp })
             }
             remove={() => dispatch({ type: "remove", index: i })}
-            key={i}
+            key={prop.id}
           />
         ))}
         <button
           className={styles.appendButton}
-          onClick={() =>
-            dispatch({ type: "append", prop: { label: "カウンタ", value: 0 } })
-          }
+          onClick={() => {
+            dispatch({
+              type: "append",
+              prop: { id: nextId, label: "カウンタ", value: 0 },
+            })
+            setNextId(nextId >= Number.MAX_SAFE_INTEGER ? 0 : nextId + 1)
+          }}
         ></button>
       </div>
     </Layout>
