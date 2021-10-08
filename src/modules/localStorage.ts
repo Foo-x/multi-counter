@@ -4,6 +4,10 @@ const counterListKey = "counter-list"
 
 export const counterListStore: CounterListStore = {
   load: () => {
+    if (typeof localStorage === "undefined") {
+      return null
+    }
+
     const counterList = localStorage.getItem(counterListKey)
     if (!counterList) {
       return null
@@ -11,6 +15,10 @@ export const counterListStore: CounterListStore = {
     return JSON.parse(counterList)
   },
   save: (counterList: CounterProps[]) => {
+    if (typeof localStorage === "undefined") {
+      return
+    }
+
     localStorage.setItem(counterListKey, JSON.stringify(counterList))
   },
 }
