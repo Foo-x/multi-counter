@@ -10,18 +10,24 @@ type CounterProps = {
   value: number
 }
 
-type Action = {
-  type: "append"
-  prop: CounterProps
-}
+type Action =
+  | {
+      type: "append"
+      prop: CounterProps
+    }
+  | {
+      type: "remove"
+      index: number
+    }
 
 const reducer = (state: CounterProps[], action: Action): CounterProps[] => {
   switch (action.type) {
     case "append":
-      state.push(action.prop)
-      return [...state]
+      return [...state, action.prop]
+    case "remove":
+      return state.filter((_, i) => i !== action.index)
     default:
-      const _: never = action.type
+      const _: never = action
       return _
   }
 }
@@ -37,6 +43,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <CounterWithLabel
             initLabel={prop.label}
             initValue={prop.value}
+            dispatch={() => dispatch({ type: "remove", index: i })}
             key={i}
           />
         ))}
