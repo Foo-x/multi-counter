@@ -20,7 +20,12 @@ const CounterWithLabel: React.FC<Props> = ({ prop, update, remove }) => {
         }}
       />
       <div className={styles.counterRow}>
-        <Counter initValue={prop.value} />
+        <Counter
+          value={prop.value}
+          update={value => {
+            update({ ...prop, value })
+          }}
+        />
       </div>
       <button className={styles.closeButton} onClick={() => remove()}></button>
     </div>
