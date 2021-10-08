@@ -76,7 +76,7 @@ const IndexPage: React.FC<PageProps> = () => {
             onClick={() => {
               dispatch({
                 type: "append",
-                prop: { id: nextId, label: "カウンタ", value: 0 },
+                prop: { id: nextId, label: "", value: 0 },
               })
               setNextId(nextId >= Number.MAX_SAFE_INTEGER ? 0 : nextId + 1)
             }}
