@@ -53,13 +53,9 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Original Yu Gothic", "Yu Gothic", Roboto, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
-    Times, serif;
-  --font-body: var(--fontFamily-serif);
-  --font-heading: var(--fontFamily-sans);
+  --fontFamily-base: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "BIZ UDGothic", "Original Yu Gothic", "Yu Gothic", Roboto, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
   --fontWeight-semibold: 600;
@@ -106,7 +102,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--fontFamily-base);
   font-size: var(--fontSize-1);
   color: var(--color-text);
 }
@@ -129,7 +125,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--fontFamily-base);
   margin-top: var(--spacing-12);
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
