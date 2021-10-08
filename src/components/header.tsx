@@ -8,7 +8,6 @@ type Props = {
 const Header: React.FC<Props> = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -23,7 +22,6 @@ const Header: React.FC<Props> = ({ siteTitle }) => (
         <Link
           to="/"
           style={{
-            color: `white`,
             textDecoration: `none`,
           }}
         >
