@@ -4,6 +4,7 @@ module.exports = {
     description: `複数のカウンターです。`,
     siteUrl: `https://foo-x.github.io/multi-counter/`,
   },
+  pathPrefix: `/multi-counter`,
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
