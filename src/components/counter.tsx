@@ -28,13 +28,15 @@ const Counter: React.FC<Props> = ({ initValue = 0 }) => {
   const [state, dispatch] = useReducer(reducer, Math.max(0, initValue))
   return (
     <div className={styles.counter}>
-      <button className={styles.button} onClick={() => dispatch("decrement")}>
-        {"-"}
-      </button>
+      <button
+        className={styles.decrementButton}
+        onClick={() => dispatch("decrement")}
+      ></button>
       <span className={styles.value}>{state}</span>
-      <button className={styles.button} onClick={() => dispatch("increment")}>
-        {"+"}
-      </button>
+      <button
+        className={styles.incrementButton}
+        onClick={() => dispatch("increment")}
+      ></button>
     </div>
   )
 }
