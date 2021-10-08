@@ -1,0 +1,21 @@
+.counterWithLabel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-6);
+  gap: var(--spacing-6);
+  border-radius: 0.25rem;
+  font-size: var(--fontSize-3);
+  background-color: #2981c010;
+}
+
+.label {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.counterRow {
+  display: flex;
+  justify-content: flex-end;
+}
