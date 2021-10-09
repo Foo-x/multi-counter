@@ -1,5 +1,5 @@
 import type { PageProps } from "gatsby"
-import React, { useReducer, useState } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import CounterWithLabel from "~/components/counterWithLabel"
 import type { CounterProps } from "~/contexts/storeContext"
 import { CounterListStoreContext } from "~/contexts/storeContext"
@@ -9,6 +9,10 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 type Action =
+  | {
+      type: "init"
+      props: CounterProps[]
+    }
   | {
       type: "append"
       prop: CounterProps
@@ -26,6 +30,9 @@ type Action =
 const reducer = (state: CounterProps[], action: Action): CounterProps[] => {
   let newState: CounterProps[]
   switch (action.type) {
+    case "init":
+      return action.props
+
     case "append":
       newState = [...state, action.prop]
       counterListStore.save(newState)
@@ -51,10 +58,18 @@ const reducer = (state: CounterProps[], action: Action): CounterProps[] => {
 const IndexPage: React.FC<PageProps> = () => {
   const [nextId, setNextId] = useState(0)
 
-  const [counterList, dispatch] = useReducer(
-    reducer,
-    counterListStore.load() ?? []
-  )
+  const [counterList, dispatch] = useReducer(reducer, [])
+
+  useEffect(() => {
+    const savedCounterList = counterListStore.load() ?? []
+    const nextId =
+      savedCounterList.length > 0
+        ? savedCounterList[savedCounterList.length - 1].id + 1
+        : 0
+    setNextId(nextId)
+
+    dispatch({ type: "init", props: savedCounterList })
+  }, [])
 
   return (
     <CounterListStoreContext.Provider value={counterListStore}>
@@ -78,7 +93,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 type: "append",
                 prop: { id: nextId, label: "", value: 0 },
               })
-              setNextId(nextId >= Number.MAX_SAFE_INTEGER ? 0 : nextId + 1)
+              setNextId(nextId + 1)
             }}
           ></button>
         </div>
