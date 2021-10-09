@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "multi-counter",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Multi Counter",
   "version": "0.1.0",
   "dependencies": {
     "color-system": "git+https://github.com/Foo-x/color-system.git",
