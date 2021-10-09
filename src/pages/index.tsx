@@ -74,7 +74,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <CounterListStoreContext.Provider value={counterListStore}>
       <Layout>
-        <Seo title="Home" />
+        <Seo />
         <div className={styles.counterList}>
           {counterList.map((prop, i) => (
             <CounterWithLabel

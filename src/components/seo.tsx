@@ -22,9 +22,9 @@ const Seo: React.FC<Props> = ({
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery(
+  const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
-      query {
+      query Seo {
         site {
           siteMetadata {
             title
@@ -35,16 +35,17 @@ const Seo: React.FC<Props> = ({
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site!.siteMetadata!.description
+  const actualTitle = title
+    ? `${title} | ${site!.siteMetadata!.title}`
+    : site!.siteMetadata!.title
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
+      title={actualTitle}
       meta={[
         ...[
           {
@@ -53,7 +54,7 @@ const Seo: React.FC<Props> = ({
           },
           {
             property: `og:title`,
-            content: title,
+            content: actualTitle,
           },
           {
             property: `og:description`,
