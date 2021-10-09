@@ -15,7 +15,7 @@ const CounterWithLabel: React.FC<Props> = ({ prop, update, remove }) => {
       <input
         className={styles.label}
         defaultValue={prop.label}
-        placeholder={"カウンタ名"}
+        placeholder={"カウンター名"}
         onInput={e => {
           update({ ...prop, label: e.currentTarget.value })
         }}
