@@ -57,6 +57,7 @@ const reducer = (state: CounterProps[], action: Action): CounterProps[] => {
 
 const IndexPage: React.FC<PageProps> = () => {
   const [nextId, setNextId] = useState(0)
+  const [lastAppended, setLastAppended] = useState(-1)
 
   const [counterList, dispatch] = useReducer(reducer, [])
 
@@ -79,6 +80,7 @@ const IndexPage: React.FC<PageProps> = () => {
           {counterList.map((prop, i) => (
             <CounterWithLabel
               prop={prop}
+              shouldFocus={prop.id === lastAppended}
               update={newProp =>
                 dispatch({ type: "update", index: i, prop: newProp })
               }
@@ -93,6 +95,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 type: "append",
                 prop: { id: nextId, label: "", value: 0 },
               })
+              setLastAppended(nextId)
               setNextId(nextId + 1)
             }}
           ></button>
